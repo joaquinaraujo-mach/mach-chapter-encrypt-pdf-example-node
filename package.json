@@ -1,0 +1,19 @@
+{
+  "name": "mach-chapter-encrypt-pdf-example-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaquinaraujo-mach/mach-chapter-encrypt-pdf-example-node.git"
+  },
+  "author": "Joaquin Araujo <joaquin.araujo@bci.cl>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joaquinaraujo-mach/mach-chapter-encrypt-pdf-example-node/issues"
+  },
+  "homepage": "https://github.com/joaquinaraujo-mach/mach-chapter-encrypt-pdf-example-node#readme"
+}
