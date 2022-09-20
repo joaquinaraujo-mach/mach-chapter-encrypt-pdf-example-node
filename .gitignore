@@ -1,3 +1,3 @@
-in-memory/*
+src/in-memory/*.pdf
 src/utils/doc-encrypted.pdf
 .DS_Store

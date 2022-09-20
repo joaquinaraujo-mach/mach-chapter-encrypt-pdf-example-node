@@ -1,24 +1,21 @@
 const path = require('path')
 const fs = require('fs').promises
-const getBase64Pdf = require('./utils/getBase64Pdf')
-const encryptBase64Pdf = require('./encrypt-base64-pdf')
-const saveBase64Pdf = require('./utils/saveBase64Pdf')
+const Processor = require('./processor')
+const temporalSource = path.join(__dirname, './in-memory/doc.pdf')
+const temporalDestination = path.join(__dirname, './in-memory/doc-encrypted.pdf')
 
-async function main() {
-  await fs.mkdir(path.join(__dirname, '../in-memory'), { recursive: true })
+async function encryptPdf (base64Pdf, {
+  username,
+  password
+}) {
+  const bitmap = new Buffer.from(base64Pdf, 'base64')
 
-  const base64Pdf = await getBase64Pdf()
+  await fs.writeFile(temporalSource, bitmap)
 
-  try {
-    const encryptedBase64Pdf = await encryptBase64Pdf(base64Pdf, {
-      username: 'mach',
-      password: '1234'
-    })
+  const processor = new Processor(username, password)
+  await processor.encrypt(temporalSource, temporalDestination)
 
-    await saveBase64Pdf(encryptedBase64Pdf)
-  } catch (error) {
-    console.log(error)
-  }
+  return fs.readFile(temporalDestination, { encoding: 'base64' })
 }
 
-main()
+module.exports = encryptPdf
